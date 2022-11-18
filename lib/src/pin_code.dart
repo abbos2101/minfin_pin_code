@@ -3,8 +3,24 @@ import 'widget_keyboard.dart';
 import 'pin_controller.dart';
 
 class MinfinPinCode extends StatefulWidget {
-  //final String title;
-  const MinfinPinCode({Key? key}) : super(key: key);
+  final String title;
+  final String descEnterPin;
+  final String descSetPin;
+  final String descRepeatPin;
+  final String descNotEqual;
+  final Function()? onFail;
+  final Function()? onSuccess;
+
+  const MinfinPinCode({
+    Key? key,
+    this.title = "Pin Kod",
+    this.descEnterPin = "Pinkodingizni kiriting",
+    this.descSetPin = "Pinkodingizni o'rnating",
+    this.descRepeatPin = "Qayta kiriting",
+    this.descNotEqual = "Mos kelmadi :(",
+    this.onFail,
+    this.onSuccess,
+  }) : super(key: key);
 
   @override
   State<MinfinPinCode> createState() => _MinfinPinCodeState();
@@ -13,14 +29,14 @@ class MinfinPinCode extends StatefulWidget {
 class _MinfinPinCodeState extends State<MinfinPinCode> {
   late final controller = PinController(
     () => setState(() {}),
-    () => print("SUCCESSSSSSSS"),
+    () => widget.onSuccess?.call(),
   );
 
   String get desc {
-    if (controller.hasError) return "Mos kelmadi :(";
-    if (controller.hasCode) return "Pinkodingizni kiriting";
-    if (controller.code.isEmpty) return "Pinkodingizni o'rnating";
-    return "Qayta kiriting";
+    if (controller.hasError) return widget.descNotEqual;
+    if (controller.hasCode) return widget.descEnterPin;
+    if (controller.code.isEmpty) return widget.descSetPin;
+    return widget.descRepeatPin;
   }
 
   @override
@@ -31,9 +47,12 @@ class _MinfinPinCodeState extends State<MinfinPinCode> {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.hasError) {
+      widget.onFail?.call();
+    }
     return Scaffold(
       body: WidgetKeyboard(
-        title: "Xizmat Safari",
+        title: widget.title,
         desc: desc,
         text: controller.text,
         error: controller.hasError,
