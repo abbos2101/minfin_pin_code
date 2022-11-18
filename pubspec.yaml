@@ -1,7 +1,7 @@
 name: minfin_pin_code
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/abbos2101/minfin_pin_code
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  local_auth: ^2.1.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_lints: ^2.0.0
