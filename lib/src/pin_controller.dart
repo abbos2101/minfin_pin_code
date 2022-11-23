@@ -24,7 +24,7 @@ class PinController {
     _hasBiometric = await _auth.isSupported();
     _changed();
     await _pref.init();
-    _code = _pref.getCode();
+    _code = _pref.code;
     _changed();
     if (_code.length == 4) {
       _hasCode = true;
@@ -43,6 +43,7 @@ class PinController {
           if (_code == _text) {
             _pref.saveCode(_code);
             myPrint("Saved PinCode");
+            myPrint("PinCode = ${_pref.code}");
             onSuccess();
           } else {
             _hasError = true;
@@ -69,6 +70,7 @@ class PinController {
   Future<void> onTapFinger() async {
     if (_hasBiometric && await _auth.isAuthenticated()) {
       myPrint("Login via FaceId");
+      myPrint("PinCode = ${_pref.code}");
       onSuccess();
     }
   }

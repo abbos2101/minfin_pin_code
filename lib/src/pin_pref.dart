@@ -7,5 +7,5 @@ class PinPref {
 
   void saveCode(String value) => _pref.setString("code", value);
 
-  String getCode() => _pref.getString("code") ?? "";
+  String get code => _pref.getString("code") ?? "";
 }

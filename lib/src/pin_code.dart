@@ -23,7 +23,11 @@ class MinfinPinCode extends StatefulWidget {
     this.onSuccess,
   }) : super(key: key);
 
-  static void clear() => PinPref().saveCode("");
+  static Future<void> clear() async {
+    final pref = PinPref();
+    await pref.init();
+    pref.saveCode("");
+  }
 
   @override
   State<MinfinPinCode> createState() => _MinfinPinCodeState();
