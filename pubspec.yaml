@@ -1,10 +1,10 @@
 name: minfin_pin_code
 description: Minfin proyektlariga mos keluvchi pin code. Sizga to'g'ri kelsa ishlating
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/abbos2101/minfin_pin_code
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,4 +14,4 @@ dependencies:
   shared_preferences: ^2.0.15
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1

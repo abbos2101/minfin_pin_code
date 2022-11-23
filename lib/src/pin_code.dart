@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widget_keyboard.dart';
 import 'pin_controller.dart';
+import 'pin_pref.dart';
 
 class MinfinPinCode extends StatefulWidget {
   final String title;
@@ -21,6 +22,8 @@ class MinfinPinCode extends StatefulWidget {
     this.onFail,
     this.onSuccess,
   }) : super(key: key);
+
+  static void clear() => PinPref().saveCode("");
 
   @override
   State<MinfinPinCode> createState() => _MinfinPinCodeState();
