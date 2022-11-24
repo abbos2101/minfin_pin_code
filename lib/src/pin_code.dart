@@ -12,7 +12,7 @@ class MinfinPinCode extends StatefulWidget {
   final Function()? onFail;
   final Function()? onSuccess;
 
-  const MinfinPinCode({
+  const MinfinPinCode._({
     Key? key,
     this.title = "Pin Kod",
     this.descEnterPin = "Pinkodingizni kiriting",
@@ -22,6 +22,35 @@ class MinfinPinCode extends StatefulWidget {
     this.onFail,
     this.onSuccess,
   }) : super(key: key);
+
+  static MinfinPinCode? _instance;
+
+  static void ensureInitialized({
+    String title = "Pin Kod",
+    String descEnterPin = "Pinkodingizni kiriting",
+    String descSetPin = "Pinkodingizni o'rnating",
+    String descRepeatPin = "Qayta kiriting",
+    String descNotEqual = "Mos kelmadi :(",
+    Function()? onFail,
+    Function()? onSuccess,
+  }) {
+    _instance = MinfinPinCode._(
+      title: title,
+      descEnterPin: descEnterPin,
+      descSetPin: descSetPin,
+      descRepeatPin: descRepeatPin,
+      descNotEqual: descNotEqual,
+      onFail: onFail,
+      onSuccess: onSuccess,
+    );
+  }
+
+  static MinfinPinCode getInstance() {
+    if (_instance != null) return _instance!;
+    throw "MinfinOneIDPage ensureInitialized qilinmagan";
+  }
+
+  ;
 
   static Future<void> clear() async {
     final pref = PinPref();
@@ -35,8 +64,8 @@ class MinfinPinCode extends StatefulWidget {
 
 class _MinfinPinCodeState extends State<MinfinPinCode> {
   late final controller = PinController(
-    () => setState(() {}),
-    () => widget.onSuccess?.call(),
+        () => setState(() {}),
+        () => widget.onSuccess?.call(),
   );
 
   String get desc {
