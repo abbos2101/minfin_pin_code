@@ -50,8 +50,6 @@ class MinfinPinCode extends StatefulWidget {
     throw "MinfinOneIDPage ensureInitialized qilinmagan";
   }
 
-  ;
-
   static Future<void> clear() async {
     final pref = PinPref();
     await pref.init();
@@ -64,8 +62,8 @@ class MinfinPinCode extends StatefulWidget {
 
 class _MinfinPinCodeState extends State<MinfinPinCode> {
   late final controller = PinController(
-        () => setState(() {}),
-        () => widget.onSuccess?.call(),
+    () => setState(() {}),
+    () => widget.onSuccess?.call(),
   );
 
   String get desc {
